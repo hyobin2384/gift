@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div style="text-align:center; max-width:700px; margin: 4rem auto;">
+
+        <h1>
+            {{ target_main.title }}
+        </h1>
+<!--        <h5>-->
+<!--            {{ target_main.writer.profile.nickname }}-->
+<!--        </h5>-->
+        <hr>
+
+        <img style="width:100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_main.image.url }}" alt="">
+
+        <div class="text-left">
+            {{ target_main.content | safe }}
+        </div>
+
+        {% if target_main.writer == user %}
+        <a href="{% url 'mainapp:update' pk=target_main.pk %}"
+            class="btn btn-primary rounded-pill col-3">
+            Update
+        </a>
+
+        <a href="{% url 'mainapp:delete' pk=target_main.pk %}"
+            class="btn btn-danger rounded-pill col-3">
+            Delete
+        </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

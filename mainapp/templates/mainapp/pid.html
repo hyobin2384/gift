@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+   {% if pid_list %}
+<div class="container">
+    {% for pid in pid_list %}
+    <div style="display: flex; justify-content: center;">
+    <div style = "width:50rem; height:61rem; display:flex; flex-direction: column; margin-top:4rem;">
+        <div class="border feed_box">
+            <div class="feed_name">
+                <div class="profile_box">
+                    <img class="profile_img" src="{{ pid.writer.profile.image.url }}">
+                </div>
+                <span class="feed_name_txt"> {{ pid.writer.profile.nickname }} </span>
+            </div>
+            <hr size="3";>
+            <img class="feed_img" src ="{{ pid.image.url }}">
+            <div class="feed_icon">
+                <div>
+                    <span class="material-icons">
+                        favorite_border
+                    </span>
+                    <span class="material-icons">
+                        chat_bubble_outline
+                    </span>
+                    <span class="material-icons">
+                        send
+                    </span>
+                </div>
+                <div>
+                <span class="material-icons">
+                    turned_in_not
+                </span>
+                </div>
+            </div>
+            <div class="feed_content">
+                <span class="feed_txt">
+                    {{ pid.content | safe  }}
+                </span>
+            </div>
+        </div>
+</div>
+  </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="text-align: center">
+    <h1>No Feed YET!</h1>
+  </div>
+  {% endif %}
+
+{% endblock %}
